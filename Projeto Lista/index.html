@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
+    <title>Lista de Tarefas</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>LISTA DE TAREFAS</h1>
+        <input type="text" id="entradaTarefa" placeholder="Adicione uma nova tarefa"> <!--Pergunta para a pessoa inserir a tarefa que ela quer-->
+        <input type="date" id="dataTarefa">  <!--Dando a pergunta da data-->
+        <input type="time" id="horaTarefa">  <!--Dando a pergunta da hora-->
+        <button onclick="adicionarTarefa()">Adicionar</button>
+        <div class="result">  <!--Colou a lista dentro da DIV (2 quadrado)-->
+            <ul id="listaTarefas"></ul>
+        </div>
+    </div>
+
+    <script>
+
+        function adicionarTarefa() {
+            var entradaTarefa = document.getElementById("entradaTarefa"); //
+            var textoTarefa = entradaTarefa.value.trim(); //trim() remove os espaços em branco
+
+            if (textoTarefa === "") {
+                alert("Por favor, insira uma tarefa!");    //Quando nada for adcionado no campo de "entradaTarefa" Dar alerta.
+                return;
+            }
+
+            var dataTarefa = document.getElementById("dataTarefa").value; //Transformando a data e a hora em valores para apresentar na tela.
+            var horaTarefa = document.getElementById("horaTarefa").value;
+
+            var listaTarefas = document.getElementById("listaTarefas"); //Pegando os itens da tabela e dando o nome de listaTarefas.
+            var li = document.createElement("li");  //Criando a LI e dando o nome da Li de Li
+            li.textContent = textoTarefa + " | Data: " + dataTarefa + " || As " + horaTarefa + "";  //Apresentando ao usuario a data e a hora definida pelo usuario.
+
+            var botaoDeletar = document.createElement("button"); //Criando botao delet
+            botaoDeletar.textContent = "Deletar";  //Dando o nome do botao deletar de deletar
+            botaoDeletar.className = "delete-btn"; //Dando o nome da classe do botao para mexer no CSS
+            botaoDeletar.onclick = function () {  //Chamando a funçao do botao delet
+                li.remove();  //Remove o item da lista
+            };
+
+            li.appendChild(botaoDeletar); 
+            listaTarefas.appendChild(li);
+
+            entradaTarefa.value = "";
+            document.getElementById("dataTarefa").value = "";
+            document.getElementById("horaTarefa").value = "";
+        }
+
+    </script>
+
+</body>
+</html>
